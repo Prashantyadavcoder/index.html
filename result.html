@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>रिजल्ट चेक करें</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .container { background: #f9f9f9; padding: 20px; border-radius: 5px; }
+        input[type="text"] { padding: 8px; width: 200px; }
+        button { padding: 8px 15px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h2>रिजल्ट चेक करें</h2>
+    <form method="POST">
+        <input type="text" name="rollno" placeholder="अपना रोल नंबर डालें" required>
+        <button type="submit">खोजें</button>
+    </form>
+
+    <?php
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        $rollno = trim($_POST['rollno']);
+        
+        // CSV फ़ाइल से डेटा पढ़ें
+        $filename = 'results.csv';
+        
+        if(file_exists($filename)) {
+            $file = fopen($filename, "r");
+            $found = false;
+            
+            while (($data = fgetcsv($file)) !== FALSE) {
+                if($data[0] == $rollno) {
+                    echo "<div style='margin-top:20px; padding:15px; background:#e8f4ff; border-radius:5px;'>
+                            <!-- <h3>रिजल्ट विवरण:</h3>
+                            <p><strong>रोल नंबर:</strong> ".$data[0]."</p>
+                            <p><strong>नाम:</strong> ".$data[1]."</p>
+                            <p><strong>अंक:</strong> ".$data[2]."</p>
+                          </div>"; -->
+                    <!-- $found = true;
+                    break; 
+                }
+            }
+            
+             if(!$found) {
+                echo "<p style='color:red; margin-top:10px;'>रोल नंबर नहीं मिला!</p>";
+            }
+            fclose($file);
+        } else {
+            echo "<p style='color:red;'>रिजल्ट उपलब्ध नहीं है</p>";
+        }
+    }
+    ?> -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>MDCA प्रोफेशनल कोर्स</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #2196f3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a192f;
+            color: #ccd6f6;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .particles {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, var(--primary) 20%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            /* -webkit-background-clip: text; */
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .course-card:hover {
+            transform: translateZ(20px) rotateX(5deg);
+        }
+
+        .fee-structure {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .fee-card {
+            background: #112240;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .fee-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, var(--primary), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+
+        .fee-card:hover::before {
+            animation: borderFlow 3s linear infinite;
+        }
+
+        @keyframes borderFlow {
+            0% { transform: rotate(45deg) translateX(-50%); }
+            100% { transform: rotate(45deg) translateX(50%); }
+        }
+
+        .syllabus-accordion {
+            margin-top: 2rem;
+        }
+
+        .accordion-item {
+            background: #112240;
+            margin: 1rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 1.5rem;
+        }
+
+        /* .3d-icon{
+            font-size: 2.5rem;
+            color: var(--primary);
+            filter: drop-shadow(0 0 10px var(--primary));
+        } */
+
+        .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1><i class="fas fa-laptop-code 3d-icon"></i> MDCA प्रोफेशनल कोर्स</h1>
+                <p>कंप्यूटर एप्लीकेशन में डिप्लोमा</p>
+            </div>
+        </header>
+
+        <div class="course-card">
+            <h2>कोर्स विवरण <i class="fas fa-info-circle"></i></h2>
+            <div class="details">
+                <p>अवधि: 15 month</p>
+                <p>मोड: ऑफलाइन/ऑनलाइन</p>
+                <p>योग्यता: 12th पास</p>
+            </div>
+        </div>
+
+        <div class="fee-structure">
+            <div class="fee-card">
+                <h3>फीस संरचना <i class="fas fa-rupee-sign"></i></h3>
+                <ul>
+                    <li>कुल फीस: <span class="highlight">72500</span></li>
+                    
+                </ul>
+            </div>
+
+            <div class="fee-card">
+                <h3>छूट योजना <i class="fas fa-gift"></i></h3>
+                <ul>
+                    <li>स्कॉलरशिप: 10% (मेरिट के आधार पर)</li>
+                    <li>पारिवारिक छूट: 5%</li>
+                    <li>अर्ली बर्ड ऑफर: 7%</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="syllabus-accordion">
+            <h2>सिलेबस <i class="fas fa-book-open"></i></h2>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>सेमेस्टर 1</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>• कंप्यूटर फंडामेंटल्स</p>
+                    <p>• MS Office</p>
+                    <p>• Tally ERP 9</p>
+                </div>
+            </div>
+            <!-- और सेमेस्टर जोड़ें -->
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        // पार्टिकल एनिमेशन
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for(let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                gsap.set(particle, {
+                    x: Math.random() * innerWidth,
+                    y: Math.random() * innerHeight,
+                    width: Math.random() * 5 + 2,
+                    height: Math.random() * 5 + 2,
+                    opacity: Math.random() * 0.3 + 0.1
+                });
+
+                gsap.to(particle, {
+                    y: '+=100',
+                    x: '+=50',
+                    duration: Math.random() * 5 + 3,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
+
+                container.appendChild(particle);
+            }
+        }
+
+        // एकॉर्डियन फंक्शन
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + 'px';
+            header.querySelector('i').classList.toggle('fa-chevron-up');
+        }
+
+        // 3D हॉवर इफेक्ट
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.transform = `
+                    perspective(1000px)
+                    rotateX(${(y - rect.height/2) / 10}deg)
+                    rotateY(${-(x - rect.width/2) / 10}deg)
+                    translateZ(20px)
+                `;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+
+        // इनिशियलाइजेशन
+        createParticles();
+        gsap.from('.course-card', {duration: 1, y: 100, opacity: 0, stagger: 0.2});
+        gsap.from('.fee-card', {duration: 0.8, scale: 0.5, rotation: 180, stagger: 0.3});
+    </script>
+</body>
+</html>

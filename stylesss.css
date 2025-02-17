@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #201515;
+    color: #333;
+    margin: 0;
+    height: 170vh;
+    padding: 0;
+}
+
+header {
+    
+    color: white;
+    padding: 20px;
+    text-align: center;
+    height: 15vh;
+    background-color: transparent;
+    
+}
+.padding{
+    margin-top: 0px;
+}
+
+main {
+    padding: 20px;
+}
+
+.course {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+}
+
+.course-card {
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 295px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    background-color: transparent;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+}
+
+.course-card h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.course-card p {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+.course-card button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.course-card button:hover {
+    background-color: #45a049;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    margin-top: 100px;
+}
+.footer-1{
+    height: 10px;
+}

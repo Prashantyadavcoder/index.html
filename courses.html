@@ -1,0 +1,285 @@
+
+
+      <!-- background -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Background</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            background: #0f0f0f;
+            height: 200vh; /* Add extra height to enable scrolling */
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            padding: 20px;
+            margin-top: 100vh; /* Push content below the viewport */
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="content">
+        <h1>Scroll Down</h1>
+        <p>This is some content to scroll through.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>More content...</p>
+    </div> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Three.js Scene Setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Add 3D Torus
+        const geometry = new THREE.TorusGeometry(2, 0.6, 16, 100);
+        const material = new THREE.MeshPhongMaterial({
+            color: 0x4ecdc4,
+            shininess: 100
+        });
+        const torus = new THREE.Mesh(geometry, material);
+        scene.add(torus);
+
+        // Add Lights
+        const light = new THREE.PointLight(0xffffff, 1);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+
+        camera.position.z = 5;
+
+        // Add Particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 5000;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 10;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.005,
+            color: 0xff6b6b
+        });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+            torus.rotation.x += 0.01;
+            torus.rotation.y += 0.005;
+            particlesMesh.rotation.y += 0.002;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize Handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1 class="padding">हमारे पाठ्यक्रम</h1>
+    </header>
+    <main>
+        <style>
+            /* General Styles */
+           
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color:transparent;
+    color: white;
+}
+
+.course {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.course-card {
+    background: transparent;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    color: #f4f4f9;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.course-card h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.course-card p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+/* .mdca{
+    color: #f4f4f9;
+    background-color: #45a049;
+    height: 100vh;
+} */
+.course-card button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.course-card button:hover {
+    background-color: #45a049;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .course-card {
+        width: 100%;
+    }
+}
+        </style>
+        <section class="course">
+            <div class="course-card">
+                <h2>DCA (Diploma in Computer Applications)</h2>
+                <p>अवधि: 3 महीने</p>
+                <p>शुल्क: ₹2500</p>
+                <button onclick="enroll('DCA')">अभी नामांकन करें</button>
+            </div>
+            <div class="course-card">
+                <h2>CCC (Course on Computer Concepts)</h2>
+                <p>अवधि: 3 महीने</p>
+                <p>शुल्क: ₹2500</p>
+                <button onclick="enroll('CCC')">अभी नामांकन करें</button>
+            </div>
+            <div class="course-card">
+                <h2>CFA (Certified Financial Analyst)</h2>
+                <p>अवधि: 3 महीने</p>
+                <p>शुल्क: ₹2500</p>
+                <button onclick="enroll('CFA')">अभी नामांकन करें</button>
+            </div>
+            <div class="course-card">
+                <h2>DFA (Diploma in Financial Accounting)</h2>
+                <p>अवधि: 6 महीने</p>
+                <p>शुल्क: ₹4200</p>
+                <button onclick="enroll('DFA')">अभी नामांकन करें</button>
+            </div>
+            <div class="course-card">
+                <h2>ADCA (Advanced Diploma in Computer Applications)</h2>
+                <p>अवधि: 12 महीने</p>
+                <p>शुल्क: ₹4200</p>
+                <button onclick="enroll('ADCA')">अभी नामांकन करें</button>
+            </div>
+            <div class="course-card">
+                <h2>O'LEVEL</h2>
+                <p>अवधि: 12 महीने</p>
+                <p>शुल्क: ₹15500</p>
+                <button onclick="enroll('OLEVEL')">अभी नामांकन करें</button>
+            </div>
+            <div class="course-card">
+                <h2>MDCA (Master Diploma in Computer Applications)</h2>
+                <p>अवधि: 15 महीने</p>
+                <p>शुल्क: ₹7250</p>
+                <a href="mdca.html"  class="mdca">All information</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p class="footer-1">&copy; 2025 Excel-Net Computer center. All rights reserved.</p>
+    </footer>
+    <script >// GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Animate course cards on scroll
+        gsap.from(".course-card", {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: ".course",
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none none",
+            },
+        });
+        
+        // Enroll button function
+        function enroll(courseName) {
+            alert(`You have enrolled in ${courseName}!`);
+        }</script>
+</body>
+</html>
